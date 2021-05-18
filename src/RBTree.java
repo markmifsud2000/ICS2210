@@ -130,7 +130,7 @@ public class RBTree {
                 rCount += right.countNodes();
             }
 
-            return 1 + Math.max(lCount, rCount);
+            return 1 + lCount + rCount;
         }
 
     }
@@ -204,6 +204,7 @@ public class RBTree {
 
                     if (x.isRed) {
                         //The current node is red & we know the uncle cannot also be red
+                        Node oldParent = x.parent;
 
                         if (x == x.parent.left) {
                             //The current node is a left child
@@ -219,8 +220,8 @@ public class RBTree {
 
                         // Update node colours after rotations
                         x.isRed = false;
-                        if (x.parent != null) {
-                            x.parent.isRed = true;
+                        if (oldParent != null) {
+                            oldParent.isRed = true;
                         }
 
                     }
@@ -255,6 +256,7 @@ public class RBTree {
 
                     if (x.isRed)  {
                         //The current node is red & we know the uncle cannot also be red
+                        Node oldParent = x.parent;
 
                         if (x == x.parent.right) {
                             //The current node is a right child
@@ -270,8 +272,8 @@ public class RBTree {
 
                         //Update colours after rotations
                         x.isRed = false;
-                        if (x.parent != null) {
-                            x.parent.isRed = true;
+                        if (oldParent != null) {
+                            oldParent.isRed = true;
                         }
 
                     }
